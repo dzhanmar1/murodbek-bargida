@@ -2607,22 +2607,43 @@
         }
 
         // ─────────────────────────────────────────────────────────────
-        // 💬 ОТПРАВКА ОТВЕТА В TELEGRAM (по желанию молодоженов):
-        // 1. Создайте бесплатного бота в Telegram через @BotFather и вставьте токен:
-        const TELEGRAM_BOT_TOKEN = ''; // например: '123456789:ABCdefGhIJKlmNo...'
-        // 2. Узнайте свой chat_id через @userinfobot и вставьте сюда:
-        const TELEGRAM_CHAT_ID = '';   // например: '987654321'
+        // 📊 1. ОТПРАВКА В GOOGLE ТАБЛИЦУ (Google Sheets):
+        // Вставьте сюда URL вашего развернутого Web App из Google:
+        const GOOGLE_SCRIPT_URL = ''; // например: 'https://script.google.com/macros/s/AKfycbx.../exec'
+
+        // 💬 2. ОТПРАВКА В TELEGRAM (опционально):
+        const TELEGRAM_BOT_TOKEN = ''; // токен от @BotFather
+        const TELEGRAM_CHAT_ID = '';   // ваш chat_id от @userinfobot
         // ─────────────────────────────────────────────────────────────
 
+        const selectedDrinks = Array.from(document.querySelectorAll('input[name="drinks"]:checked'))
+          .map(cb => cb.closest('.option-chip').querySelector('.option-chip-text').textContent.trim())
+          .join(', ') || 'Не указано';
+
+        const statusText = attendanceVal === 'yes' ? 'С радостью приду' :
+                           attendanceVal === 'pair' ? `Буду с парой (Спутник: ${companionName || 'не указан'})` :
+                           'Не смогу присутствовать';
+
+        // Отправка в Google Таблицу
+        if (GOOGLE_SCRIPT_URL) {
+          const payload = {
+            date: new Date().toLocaleString('ru-RU'),
+            guestName: guestName,
+            status: statusText,
+            companionName: companionName || '—',
+            drinks: selectedDrinks,
+            song: guestSong || '—'
+          };
+          fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload)
+          }).catch(err => console.warn('Ошибка отправки в Google Таблицу:', err));
+        }
+
+        // Отправка в Telegram
         if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
-          const selectedDrinks = Array.from(document.querySelectorAll('input[name="drinks"]:checked'))
-            .map(cb => cb.closest('.option-chip').querySelector('.option-chip-text').textContent.trim())
-            .join(', ') || 'Не указано';
-
-          const statusText = attendanceVal === 'yes' ? '✅ С радостью приду' :
-                             attendanceVal === 'pair' ? `👫 Буду с парой (Спутник: ${companionName || 'не указан'})` :
-                             '❌ К сожалению, не смогу';
-
           const tgMessage = `💍 <b>Новый ответ на приглашение!</b>\n\n` +
                             `👤 <b>Гость:</b> ${guestName}\n` +
                             `💌 <b>Статус:</b> ${statusText}\n` +
