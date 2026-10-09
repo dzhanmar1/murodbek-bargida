@@ -1,0 +1,2693 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#FAF6F0" />
+  <meta name="description" content="Свадебное приглашение Муродбека и Баргиды — 11 Октября 2026 года" />
+  <title>Муродбек &amp; Баргида · Свадебное приглашение · 11.10.2026</title>
+
+  <!-- Google Fonts: Cyrillic-ready luxury typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Marck+Script&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* =========================================================
+       1. DESIGN TOKENS & RESET
+       ========================================================= */
+    :root {
+      --bg-cream: #FAF6F0;
+      --bg-card: rgba(255, 255, 255, 0.88);
+      --bg-card-solid: #FFFFFF;
+      --card-border: rgba(212, 175, 55, 0.35);
+      --card-shadow: 0 12px 40px -10px rgba(120, 50, 65, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+      
+      --rose-deep: #7A2838;
+      --rose-main: #B84D60;
+      --rose-soft: #E89FA8;
+      --rose-blush: #FCECEE;
+      
+      --gold-deep: #96742E;
+      --gold-main: #C8A452;
+      --gold-light: #EED89E;
+      --gold-glow: rgba(200, 164, 82, 0.35);
+      
+      --sage-main: #7D9476;
+      --sage-soft: #DDE5DA;
+      
+      --text-main: #2C2022;
+      --text-muted: #6E5C5F;
+      --text-sub: #9E8A8D;
+      
+      --font-script: 'Marck Script', cursive;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 32px;
+      --radius-full: 999px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      font-size: 17px;
+      scroll-behavior: smooth;
+      background-color: var(--bg-cream);
+    }
+
+    body {
+      font-family: var(--font-serif);
+      color: var(--text-main);
+      background-color: var(--bg-cream);
+      background-image: 
+        radial-gradient(ellipse at 15% 10%, rgba(232, 159, 168, 0.16) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 35%, rgba(200, 164, 82, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 75%, rgba(125, 148, 118, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 90%, rgba(184, 77, 96, 0.14) 0%, transparent 60%);
+      background-attachment: fixed;
+      line-height: 1.65;
+      overflow-x: hidden;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Scroll Progress Bar with Golden Heart */
+    .scroll-progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3.5px;
+      z-index: 999;
+      background: rgba(200, 164, 82, 0.15);
+      pointer-events: none;
+    }
+    .scroll-progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--rose-main), var(--gold-main), var(--gold-light));
+      position: relative;
+      box-shadow: 0 0 10px rgba(200, 164, 82, 0.7);
+      transition: width 0.08s ease-out;
+    }
+    .scroll-progress-heart {
+      position: absolute;
+      right: -7px;
+      top: -7px;
+      font-size: 14px;
+      color: var(--rose-main);
+      filter: drop-shadow(0 0 4px rgba(200, 164, 82, 0.8));
+      line-height: 1;
+      animation: heartPulseMini 1.2s ease-in-out infinite;
+    }
+    @keyframes heartPulseMini {
+      0%, 100% { transform: scale(0.9); }
+      50% { transform: scale(1.35); }
+    }
+
+    /* Ambient Canvas (petals + golden dust) — placed in front of content */
+    #ambient-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 60;
+    }
+
+    /* Music Player Button */
+    .music-btn {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 100;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1.5px solid var(--gold-main);
+      box-shadow: 0 4px 18px rgba(184, 77, 96, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .music-btn:active {
+      transform: scale(0.92);
+    }
+    .music-btn svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--gold-deep);
+      transition: transform 0.3s ease;
+    }
+    .music-btn.playing svg {
+      animation: spinMusic 5s linear infinite;
+    }
+    .music-ripple {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold-main);
+      opacity: 0;
+    }
+    .music-btn.playing .music-ripple {
+      animation: pulseRipple 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    }
+
+    @keyframes spinMusic {
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes pulseRipple {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+
+    /* =========================================================
+       2. INTERACTIVE ENVELOPE INTRO (First Impression)
+       ========================================================= */
+    #envelope-intro {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      background: radial-gradient(circle at center, #FDF9F4 0%, #F3EAE0 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
+    }
+    #envelope-intro.opened {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .envelope-box {
+      position: relative;
+      width: min(92vw, 380px);
+      height: min(60vw, 250px);
+      background: #FFFBF7;
+      border-radius: 12px;
+      box-shadow: 
+        0 24px 60px -15px rgba(110, 40, 50, 0.25),
+        0 4px 16px rgba(0, 0, 0, 0.06),
+        inset 0 0 0 1px rgba(200, 164, 82, 0.4);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1200px;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .envelope-box:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    /* Envelope Top Flap */
+    .env-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      background: linear-gradient(175deg, #FFF6EE 0%, #F5EAE0 100%);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      border-radius: 12px 12px 0 0;
+      transform-origin: top center;
+      box-shadow: 0 4px 12px rgba(120, 50, 60, 0.08);
+      z-index: 10;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .envelope-box.is-opening .env-flap {
+      transform: rotateX(175deg);
+      z-index: 1;
+    }
+
+    /* Envelope Letter Peek */
+    .env-letter-peek {
+      position: absolute;
+      top: 10%;
+      width: 86%;
+      height: 75%;
+      background: #FFFFFF;
+      border-radius: 8px;
+      border: 1px dashed var(--gold-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12px;
+      z-index: 2;
+      transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    }
+    .envelope-box.is-opening .env-letter-peek {
+      transform: translateY(-80px) scale(1.05);
+    }
+    .env-letter-peek .names-mini {
+      font-family: var(--font-script);
+      font-size: 1.8rem;
+      color: var(--rose-deep);
+      line-height: 1.1;
+    }
+    .env-letter-peek .date-mini {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--gold-deep);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* Wax Seal */
+    .wax-seal {
+      position: absolute;
+      top: 54%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 76px;
+      height: 76px;
+      background: radial-gradient(circle at 35% 35%, #BA384D, #6B1C28 75%);
+      border-radius: 50%;
+      z-index: 20;
+      box-shadow: 
+        0 8px 24px rgba(107, 28, 40, 0.45),
+        inset 0 2px 4px rgba(255, 255, 255, 0.35),
+        inset 0 -3px 6px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.4s ease, opacity 0.4s;
+    }
+    .envelope-box:hover .wax-seal {
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+    .envelope-box.is-opening .wax-seal {
+      transform: translate(-50%, -50%) scale(1.4);
+      opacity: 0;
+    }
+    .wax-seal svg {
+      width: 44px;
+      height: 44px;
+      fill: #FFE3AB;
+      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.4));
+    }
+
+    .seal-hint {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+    }
+    .seal-hint-text {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--rose-deep);
+      animation: pulseText 2.2s ease-in-out infinite;
+    }
+    .seal-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      background: linear-gradient(135deg, var(--rose-main) 0%, var(--rose-deep) 100%);
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: var(--radius-full);
+      box-shadow: 0 6px 20px rgba(184, 77, 96, 0.35);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .seal-btn:active {
+      transform: scale(0.96);
+    }
+    @keyframes pulseText {
+      0%, 100% { opacity: 0.6; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-3px); }
+    }
+
+    /* =========================================================
+       3. MAIN INVITATION LAYOUT (Mobile-First Luxury)
+       ========================================================= */
+    .app-wrapper {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 24px 16px 80px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Sections Shared Styling */
+    .card-section {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      padding: clamp(28px, 7vw, 42px) clamp(18px, 5vw, 30px);
+      margin-bottom: 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle Gold Inner Glow Border */
+    .card-section::after {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border-radius: calc(var(--radius-lg) - 6px);
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      pointer-events: none;
+    }
+
+    /* Typography Components */
+    .eyebrow-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 14px;
+    }
+    .eyebrow-badge::before,
+    .eyebrow-badge::after {
+      content: '';
+      width: 22px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-main));
+    }
+    .eyebrow-badge::after {
+      background: linear-gradient(to left, transparent, var(--gold-main));
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 7vw, 2.6rem);
+      font-weight: 500;
+      color: var(--rose-deep);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .body-lead {
+      font-family: var(--font-serif);
+      font-size: clamp(1.18rem, 4.4vw, 1.35rem);
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 18px;
+    }
+
+    .body-lead strong {
+      color: var(--rose-deep);
+      font-weight: 600;
+    }
+
+    /* Botanical Ornaments */
+    .botanical-header-svg {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      margin: 0 auto 10px;
+      display: block;
+    }
+    .botanical-divider-svg {
+      width: 100%;
+      max-width: 240px;
+      height: 24px;
+      margin: 18px auto;
+      display: block;
+    }
+
+    /* =========================================================
+       4. SECTION: HERO (Names & Announcement)
+       ========================================================= */
+    .hero-card {
+      padding-top: clamp(36px, 9vw, 54px);
+      padding-bottom: clamp(32px, 8vw, 48px);
+    }
+
+    .hero-greeting {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 6.2vw, 2.3rem);
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .hero-intro-text {
+      font-family: var(--font-serif);
+      font-size: clamp(1.2rem, 4.5vw, 1.35rem);
+      color: var(--text-muted);
+      max-width: 420px;
+      margin: 0 auto 24px;
+      line-height: 1.7;
+    }
+
+    /* The Massive Calligraphic Names */
+    .names-container {
+      margin: 18px 0 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .name-groom,
+    .name-bride {
+      font-family: var(--font-script);
+      font-size: clamp(3.8rem, 16vw, 5.6rem);
+      line-height: 1.05;
+      background: linear-gradient(120deg, #7A2838 0%, #B84D60 22%, #F4E2B8 48%, #B84D60 74%, #7A2838 100%);
+      background-size: 240% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: foilShimmer 5.5s ease-in-out infinite;
+      letter-spacing: 0.02em;
+      display: block;
+      filter: drop-shadow(0 4px 16px rgba(184, 77, 96, 0.2));
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .name-groom:hover,
+    .name-bride:hover {
+      transform: scale(1.04);
+    }
+
+    @keyframes foilShimmer {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .names-ampersand {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(2.4rem, 9vw, 3.4rem);
+      color: var(--gold-main);
+      line-height: 0.9;
+      margin: 2px 0;
+      filter: drop-shadow(0 2px 8px rgba(200, 164, 82, 0.3));
+    }
+
+    /* Date Capsule Display */
+    .date-capsule {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(253, 245, 245, 0.9));
+      border: 1.5px solid var(--card-border);
+      border-radius: var(--radius-full);
+      padding: 10px 24px;
+      box-shadow: 0 6px 20px rgba(184, 77, 96, 0.08);
+      margin: 10px auto 26px;
+    }
+    .date-num {
+      font-family: var(--font-sans);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--rose-deep);
+      line-height: 1;
+    }
+    .date-divider {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold-main);
+    }
+    .date-month-year {
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-main);
+    }
+
+    /* Countdown Grid */
+    .countdown-wrapper {
+      margin-top: 14px;
+    }
+    .countdown-title {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      margin-bottom: 12px;
+    }
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .countdown-item {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: var(--radius-md);
+      padding: 12px 6px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+    .countdown-item.tick-pulse {
+      transform: scale(1.09);
+      box-shadow: 0 8px 24px rgba(200, 164, 82, 0.35);
+      border-color: var(--gold-main);
+    }
+
+    /* Botanical Blossom Breeze Sway */
+    .breeze-sway {
+      animation: breezeSway 6s ease-in-out infinite;
+      transform-origin: 170px 42px;
+    }
+    .breeze-sway-left {
+      animation: breezeSwayLeft 7s ease-in-out infinite;
+      transform-origin: 100px 36px;
+    }
+    .breeze-sway-right {
+      animation: breezeSwayRight 6.5s ease-in-out infinite;
+      transform-origin: 240px 36px;
+    }
+    @keyframes breezeSway {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      35% { transform: rotate(2.2deg) scale(1.02); }
+      70% { transform: rotate(-1.8deg) scale(0.99); }
+    }
+    @keyframes breezeSwayLeft {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(-3deg); }
+    }
+    @keyframes breezeSwayRight {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(3deg); }
+    }
+    .countdown-value {
+      font-family: var(--font-sans);
+      font-size: clamp(1.4rem, 5.5vw, 1.8rem);
+      font-weight: 700;
+      color: var(--rose-deep);
+      line-height: 1.1;
+      font-variant-numeric: tabular-nums;
+    }
+    .countdown-label {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Scroll Down Indicator */
+    .scroll-down-hint {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      margin-top: 26px;
+      opacity: 0.75;
+      animation: floatDown 2.4s ease-in-out infinite;
+    }
+    .scroll-down-text {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--text-sub);
+    }
+    .scroll-down-arrow {
+      width: 18px;
+      height: 18px;
+      stroke: var(--gold-main);
+      stroke-width: 2;
+      fill: none;
+    }
+    @keyframes floatDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    /* =========================================================
+       5. SECTION: CALENDAR (October 2026)
+       ========================================================= */
+    .calendar-container {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: var(--radius-md);
+      padding: 20px 14px;
+      max-width: 380px;
+      margin: 16px auto 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.03);
+    }
+    .calendar-month-header {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--rose-deep);
+      margin-bottom: 12px;
+      text-transform: capitalize;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      text-align: center;
+    }
+    .cal-weekday {
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      padding-bottom: 8px;
+    }
+    .cal-weekday.weekend {
+      color: var(--rose-main);
+    }
+    .cal-day {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-main);
+      border-radius: 50%;
+      position: relative;
+      cursor: default;
+      transition: background-color 0.2s;
+    }
+    .cal-day.weekend {
+      color: var(--rose-main);
+    }
+    .cal-day.empty {
+      pointer-events: none;
+    }
+    
+    /* Highlighted Wedding Day 11 */
+    .cal-day.wedding-day {
+      font-weight: 700;
+      color: var(--rose-deep);
+      z-index: 2;
+    }
+    .wedding-day-heart {
+      position: absolute;
+      inset: -4px;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .wedding-day-heart svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+    .heart-path {
+      stroke: var(--rose-main);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      fill: rgba(232, 159, 168, 0.22);
+      stroke-dasharray: 200;
+      stroke-dashoffset: 200;
+      transition: stroke-dashoffset 1.8s ease-in-out;
+    }
+    .wedding-day-heart.drawn .heart-path {
+      stroke-dashoffset: 0;
+    }
+
+    /* Add to Calendar Button (.ICS generation) */
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 320px;
+      margin: 10px auto 0;
+      padding: 14px 22px;
+      border-radius: var(--radius-full);
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1.5px solid var(--gold-main);
+      background: linear-gradient(135deg, #FFFDF9 0%, #FAF0E4 100%);
+      color: var(--rose-deep);
+      box-shadow: 0 6px 18px rgba(184, 77, 96, 0.12);
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(184, 77, 96, 0.2);
+      border-color: var(--rose-main);
+    }
+    .btn-action:active {
+      transform: scale(0.97);
+    }
+    .btn-action svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--rose-main);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* =========================================================
+       6. SECTION: PROGRAM / TIMELINE
+       ========================================================= */
+    .timeline-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 440px;
+      margin: 24px auto 10px;
+      position: relative;
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 78px 36px 1fr;
+      align-items: flex-start;
+      text-align: left;
+      padding-bottom: 26px;
+      position: relative;
+    }
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+    
+    .timeline-time {
+      font-family: var(--font-sans);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--rose-deep);
+      padding-top: 4px;
+      text-align: right;
+    }
+
+    .timeline-line-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      position: relative;
+    }
+    .timeline-icon-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FFFDFB, #F8EBE2);
+      border: 1.5px solid var(--gold-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 10px rgba(184, 77, 96, 0.15);
+      z-index: 2;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s, border-color 0.3s;
+    }
+    .timeline-item:hover .timeline-icon-badge,
+    .timeline-item:active .timeline-icon-badge {
+      transform: scale(1.22);
+      border-color: var(--rose-main);
+      box-shadow: 0 6px 18px rgba(184, 77, 96, 0.35);
+    }
+    .timeline-icon-badge svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--rose-deep);
+      fill: none;
+      stroke-width: 1.8;
+      transition: transform 0.35s ease;
+    }
+    .timeline-item:nth-child(1) .timeline-icon-badge svg {
+      animation: gentleClink 3.8s ease-in-out infinite;
+    }
+    .timeline-item:nth-child(2) .timeline-icon-badge svg {
+      animation: ringGlow 3s ease-in-out infinite;
+    }
+    .timeline-item:nth-child(3) .timeline-icon-badge svg {
+      animation: banquetFloat 4s ease-in-out infinite;
+    }
+    .timeline-item:nth-child(4) .timeline-icon-badge svg {
+      animation: cakeSparkle 2.8s ease-in-out infinite;
+    }
+
+    @keyframes gentleClink {
+      0%, 75%, 100% { transform: rotate(0) scale(1); }
+      82% { transform: rotate(-10deg) scale(1.12); }
+      88% { transform: rotate(8deg) scale(1.15); }
+      94% { transform: rotate(-3deg) scale(1.05); }
+    }
+    @keyframes ringGlow {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
+      50% { transform: scale(1.18); filter: drop-shadow(0 0 6px rgba(200, 164, 82, 0.85)); }
+    }
+    @keyframes banquetFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3.5px); }
+    }
+    @keyframes cakeSparkle {
+      0%, 100% { transform: scale(1) rotate(0); }
+      25% { transform: scale(1.12) rotate(6deg); }
+      75% { transform: scale(1.12) rotate(-6deg); }
+    }
+    .timeline-stem {
+      width: 2px;
+      flex: 1;
+      background: linear-gradient(to bottom, var(--gold-main), rgba(200, 164, 82, 0.2));
+      margin-top: 4px;
+      border-radius: 2px;
+    }
+    .timeline-item:last-child .timeline-stem {
+      display: none;
+    }
+
+    .timeline-content {
+      padding-left: 10px;
+      padding-top: 2px;
+    }
+    .timeline-event-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--rose-deep);
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+    .timeline-event-desc {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* =========================================================
+       7. SECTION: LOCATION & MAPS
+       ========================================================= */
+    .location-box {
+      background: rgba(255, 255, 255, 0.8);
+      border: 1.5px solid rgba(212, 175, 55, 0.3);
+      border-radius: var(--radius-md);
+      padding: 22px 16px;
+      margin: 18px auto 22px;
+      max-width: 420px;
+      box-shadow: 0 6px 22px rgba(184, 77, 96, 0.06);
+    }
+    .venue-name {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--rose-deep);
+      margin-bottom: 6px;
+    }
+    .venue-address {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .venue-address svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--rose-main);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    /* Map Navigation Buttons */
+    .map-buttons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+    .btn-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 14px;
+      border-radius: var(--radius-full);
+      background: #FFFFFF;
+      border: 1px solid rgba(200, 164, 82, 0.4);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .btn-nav:active {
+      transform: scale(0.96);
+    }
+    .btn-nav svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .btn-copy-address {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(232, 159, 168, 0.15), rgba(200, 164, 82, 0.15));
+      border: 1px dashed var(--gold-main);
+      color: var(--rose-deep);
+      cursor: pointer;
+    }
+
+    /* Toast Notification */
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--text-main);
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
+    }
+    .toast-popup.visible {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* =========================================================
+       8. SECTION: DRESS CODE & WISHES
+       ========================================================= */
+    .palette-wrapper {
+      margin: 20px 0;
+    }
+    .palette-circles {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .palette-circle-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .palette-swatch {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+      border: 2px solid #FFFFFF;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+    .palette-swatch:hover,
+    .palette-swatch:active {
+      transform: scale(1.18);
+    }
+    .palette-swatch.active-swatch {
+      transform: scale(1.24);
+      border-color: var(--gold-main);
+      box-shadow: 0 0 0 4px rgba(200, 164, 82, 0.4), 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    .palette-swatch-name {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* Wishes Cards */
+    .wishes-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 22px;
+      text-align: left;
+    }
+    .wish-card {
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .wish-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--rose-blush);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .wish-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--rose-deep);
+      fill: none;
+      stroke-width: 1.8;
+    }
+    .wish-body h4 {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--rose-deep);
+      margin-bottom: 2px;
+    }
+    .wish-body p {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* =========================================================
+       9. SECTION: RSVP FORM (Interactive Attendance)
+       ========================================================= */
+    .rsvp-form {
+      max-width: 440px;
+      margin: 20px auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      text-align: left;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-label {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rose-deep);
+    }
+    .form-input {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid rgba(200, 164, 82, 0.4);
+      background: #FFFFFF;
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input:focus {
+      border-color: var(--rose-main);
+      box-shadow: 0 0 0 3px rgba(184, 77, 96, 0.15);
+    }
+    .form-input::placeholder {
+      color: var(--text-sub);
+    }
+
+    /* Attendance Option Chips */
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .option-chip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      background: #FFFFFF;
+      border: 1.5px solid rgba(212, 175, 55, 0.3);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .option-chip input[type="radio"],
+    .option-chip input[type="checkbox"] {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--gold-main);
+      border-radius: 50%;
+      outline: none;
+      display: grid;
+      place-content: center;
+      transition: border-color 0.2s;
+      flex-shrink: 0;
+    }
+    .option-chip input[type="checkbox"] {
+      border-radius: 6px;
+    }
+    .option-chip input:checked {
+      border-color: var(--rose-deep);
+      background-color: var(--rose-deep);
+    }
+    .option-chip input:checked::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #FFFFFF;
+    }
+    .option-chip input[type="checkbox"]:checked::before {
+      border-radius: 2px;
+    }
+    .option-chip.selected {
+      border-color: var(--rose-deep);
+      background: var(--rose-blush);
+    }
+    .option-chip-text {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--text-main);
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      width: 100%;
+      padding: 16px 24px;
+      margin-top: 10px;
+      border: none;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, var(--rose-main) 0%, var(--rose-deep) 100%);
+      color: #FFFFFF;
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      box-shadow: 0 8px 25px rgba(184, 77, 96, 0.35);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(184, 77, 96, 0.45);
+    }
+    .btn-submit:active {
+      transform: scale(0.97);
+    }
+
+    /* RSVP Success Screen */
+    .rsvp-success-box {
+      display: none;
+      padding: 24px 12px;
+      text-align: center;
+      animation: fadeIn 0.5s ease;
+    }
+    .rsvp-success-box.show {
+      display: block;
+    }
+    .success-heart-icon {
+      font-size: 3rem;
+      color: var(--rose-main);
+      animation: heartbeat 1.2s ease-in-out infinite;
+      margin-bottom: 12px;
+    }
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* =========================================================
+       10. SECTION: CLOSING
+       ========================================================= */
+    .closing-card {
+      padding-top: clamp(36px, 9vw, 50px);
+      padding-bottom: clamp(36px, 9vw, 50px);
+    }
+    .closing-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1.35rem, 5vw, 1.65rem);
+      font-style: italic;
+      color: var(--rose-deep);
+      line-height: 1.55;
+      margin-bottom: 20px;
+    }
+    .closing-names {
+      font-family: var(--font-script);
+      font-size: clamp(3.2rem, 13vw, 4.8rem);
+      color: var(--rose-deep);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+    .closing-date-badge {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      padding: 8px 24px;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.6);
+      margin-top: 10px;
+    }
+
+    /* Confetti Canvas for RSVP celebration */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    /* Animations for ScrollTrigger */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(35px);
+      will-change: transform, opacity;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Scroll Progress Bar with Golden Heart -->
+  <div class="scroll-progress-container" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scroll-progress-bar">
+      <span class="scroll-progress-heart">❤</span>
+    </div>
+  </div>
+
+  <!-- Ambient Petals & Gold Dust Canvas -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- Confetti Celebration Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Interactive Music Toggle Button -->
+  <button class="music-btn" id="music-btn" aria-label="Включить фоновую музыку">
+    <div class="music-ripple"></div>
+    <svg viewBox="0 0 24 24">
+      <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+    </svg>
+  </button>
+
+  <!-- Toast Notification -->
+  <div class="toast-popup" id="toast-popup">Адрес скопирован в буфер обмена!</div>
+
+  <!-- =========================================================
+       INTERACTIVE ENVELOPE OPENING SCREEN (WOW Entrance)
+       ========================================================= -->
+  <div id="envelope-intro">
+    <div class="envelope-box" id="envelope-box">
+      <!-- Envelope Flap -->
+      <div class="env-flap"></div>
+      
+      <!-- Peeking Invitation Card inside -->
+      <div class="env-letter-peek">
+        <span class="names-mini">Муродбек &amp; Баргида</span>
+        <span class="date-mini">11 Октября 2026</span>
+      </div>
+
+      <!-- Wax Seal with Monogram & Olive Wreath -->
+      <div class="wax-seal">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="42" fill="none" stroke="#FFE3AB" stroke-width="2" stroke-dasharray="3 3"/>
+          <path d="M28 65 C26 48, 38 32, 50 30 C62 32, 74 48, 72 65" fill="none" stroke="#FFE3AB" stroke-width="1.5" opacity="0.6"/>
+          <!-- Monogram M & B -->
+          <text x="50" y="58" font-family="'Cormorant Garamond', serif" font-size="28" font-weight="700" fill="#FFE3AB" text-anchor="middle" letter-spacing="1">М &amp; Б</text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="seal-hint">
+      <p class="seal-hint-text">Вам доставлено свадебное приглашение</p>
+      <button class="seal-btn" id="open-envelope-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        Открыть конверт
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MAIN INVITATION CARD APPLICATION
+       ========================================================= -->
+  <div class="app-wrapper">
+
+    <!-- ── 1. HERO SECTION ── -->
+    <section class="card-section hero-card fade-up" id="sec-hero">
+      
+      <!-- Top Botanical Sakura Floral Header Ornament (Pure SVG) -->
+      <svg class="botanical-header-svg" viewBox="0 0 340 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="stemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#9C775E"/>
+            <stop offset="100%" stop-color="#6E503C"/>
+          </linearGradient>
+          <radialGradient id="petalPink1" cx="40%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="40%" stop-color="#FCE1E4"/>
+            <stop offset="100%" stop-color="#EAA6AF"/>
+          </radialGradient>
+          <radialGradient id="petalPink2" cx="40%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#FFF5F6"/>
+            <stop offset="45%" stop-color="#F8CCD3"/>
+            <stop offset="100%" stop-color="#DE8C98"/>
+          </radialGradient>
+          <linearGradient id="leafGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#A5BAA0"/>
+            <stop offset="100%" stop-color="#728C6A"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Main graceful branches -->
+        <path d="M20 75 Q100 20 170 38 Q240 20 320 75" stroke="url(#stemGrad)" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M100 35 Q130 18 150 15" stroke="url(#stemGrad)" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M240 35 Q210 18 190 15" stroke="url(#stemGrad)" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M60 52 Q85 45 95 38" stroke="url(#stemGrad)" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M280 52 Q255 45 245 38" stroke="url(#stemGrad)" stroke-width="1.5" stroke-linecap="round"/>
+
+        <!-- Sage Green Leaves -->
+        <ellipse cx="70" cy="46" rx="9" ry="4.5" fill="url(#leafGrad1)" transform="rotate(-30 70 46)"/>
+        <ellipse cx="130" cy="22" rx="10" ry="5" fill="url(#leafGrad1)" transform="rotate(-15 130 22)"/>
+        <ellipse cx="210" cy="22" rx="10" ry="5" fill="url(#leafGrad1)" transform="rotate(15 210 22)"/>
+        <ellipse cx="270" cy="46" rx="9" ry="4.5" fill="url(#leafGrad1)" transform="rotate(30 270 46)"/>
+        <ellipse cx="170" cy="28" rx="8" ry="4" fill="url(#leafGrad1)" transform="rotate(5 170 28)"/>
+
+        <!-- Center Grand Blooming Sakura Flower -->
+        <g class="breeze-sway" transform="translate(170, 42)">
+          <path d="M0 0 C-10 -15, -15 -25, 0 -30 C15 -25, 10 -15, 0 0" fill="url(#petalPink1)"/>
+          <path d="M0 0 C-10 -15, -15 -25, 0 -30 C15 -25, 10 -15, 0 0" fill="url(#petalPink1)" transform="rotate(72)"/>
+          <path d="M0 0 C-10 -15, -15 -25, 0 -30 C15 -25, 10 -15, 0 0" fill="url(#petalPink1)" transform="rotate(144)"/>
+          <path d="M0 0 C-10 -15, -15 -25, 0 -30 C15 -25, 10 -15, 0 0" fill="url(#petalPink1)" transform="rotate(216)"/>
+          <path d="M0 0 C-10 -15, -15 -25, 0 -30 C15 -25, 10 -15, 0 0" fill="url(#petalPink1)" transform="rotate(288)"/>
+          <circle cx="0" cy="0" r="5" fill="#FFE29A"/>
+          <circle cx="0" cy="0" r="2.5" fill="#C8963E"/>
+          <!-- Delicate Gold Stamens -->
+          <circle cx="0" cy="-9" r="1.2" fill="#C8963E"/><line x1="0" y1="-2" x2="0" y2="-9" stroke="#C8963E" stroke-width="0.7"/>
+          <circle cx="8" cy="-5" r="1.2" fill="#C8963E"/><line x1="2" y1="-1" x2="8" y2="-5" stroke="#C8963E" stroke-width="0.7"/>
+          <circle cx="-8" cy="-5" r="1.2" fill="#C8963E"/><line x1="-2" y1="-1" x2="-8" y2="-5" stroke="#C8963E" stroke-width="0.7"/>
+          <circle cx="6" cy="7" r="1.2" fill="#C8963E"/><line x1="1" y1="2" x2="6" y2="7" stroke="#C8963E" stroke-width="0.7"/>
+          <circle cx="-6" cy="7" r="1.2" fill="#C8963E"/><line x1="-1" y1="2" x2="-6" y2="7" stroke="#C8963E" stroke-width="0.7"/>
+        </g>
+
+        <!-- Left Sakura Flower -->
+        <g class="breeze-sway-left" transform="translate(100, 36) scale(0.8)">
+          <path d="M0 0 C-10 -15, -15 -25, 0 -30 C15 -25, 10 -15, 0 0" fill="url(#petalPink2)"/>
+          <path d="M0 0 C-10 -15, -15 -25, 0 -30 C15 -25, 10 -15, 0 0" fill="url(#petalPink2)" transform="rotate(72)"/>
+          <path d="M0 0 C-10 -15, -15 -25, 0 -30 C15 -25, 10 -15, 0 0" fill="url(#petalPink2)" transform="rotate(144)"/>
+          <path d="M0 0 C-10 -15, -15 -25, 0 -30 C15 -25, 10 -15, 0 0" fill="url(#petalPink2)" transform="rotate(216)"/>
+          <path d="M0 0 C-10 -15, -15 -25, 0 -30 C15 -25, 10 -15, 0 0" fill="url(#petalPink2)" transform="rotate(288)"/>
+          <circle cx="0" cy="0" r="4.5" fill="#FFE29A"/><circle cx="0" cy="0" r="2" fill="#C8963E"/>
+        </g>
+
+        <!-- Right Sakura Flower -->
+        <g class="breeze-sway-right" transform="translate(240, 36) scale(0.8)">
+          <path d="M0 0 C-10 -15, -15 -25, 0 -30 C15 -25, 10 -15, 0 0" fill="url(#petalPink2)"/>
+          <path d="M0 0 C-10 -15, -15 -25, 0 -30 C15 -25, 10 -15, 0 0" fill="url(#petalPink2)" transform="rotate(72)"/>
+          <path d="M0 0 C-10 -15, -15 -25, 0 -30 C15 -25, 10 -15, 0 0" fill="url(#petalPink2)" transform="rotate(144)"/>
+          <path d="M0 0 C-10 -15, -15 -25, 0 -30 C15 -25, 10 -15, 0 0" fill="url(#petalPink2)" transform="rotate(216)"/>
+          <path d="M0 0 C-10 -15, -15 -25, 0 -30 C15 -25, 10 -15, 0 0" fill="url(#petalPink2)" transform="rotate(288)"/>
+          <circle cx="0" cy="0" r="4.5" fill="#FFE29A"/><circle cx="0" cy="0" r="2" fill="#C8963E"/>
+        </g>
+      </svg>
+          <circle cx="0" cy="0" r="4.5" fill="#FFE29A"/><circle cx="0" cy="0" r="2" fill="#C8963E"/>
+        </g>
+      </svg>
+
+      <div class="eyebrow-badge">Свадебное торжество</div>
+
+      <h1 class="hero-greeting">Дорогие родные и друзья!</h1>
+
+      <p class="hero-intro-text">
+        Приглашаем вас на самое важное торжество в нашей жизни&nbsp;—
+        нашу свадьбу! И этот незабываемый день мы хотим разделить вместе с вами.
+      </p>
+
+      <!-- Botanical Gold Symmetrical Divider -->
+      <svg class="botanical-divider-svg" viewBox="0 0 240 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="12" x2="85" y2="12" stroke="#C8A452" stroke-width="1" opacity="0.6"/>
+        <path d="M95 12 Q105 5 115 12 Q105 19 95 12Z" fill="#C8A452" opacity="0.8"/>
+        <circle cx="120" cy="12" r="3" fill="#B84D60"/>
+        <path d="M145 12 Q135 5 125 12 Q135 19 145 12Z" fill="#C8A452" opacity="0.8"/>
+        <line x1="155" y1="12" x2="240" y2="12" stroke="#C8A452" stroke-width="1" opacity="0.6"/>
+      </svg>
+
+      <!-- The Grand Names Showcase -->
+      <div class="names-container">
+        <span class="name-groom">Муродбек</span>
+        <span class="names-ampersand">&amp;</span>
+        <span class="name-bride">Баргида</span>
+      </div>
+
+      <!-- Date Capsule -->
+      <div class="date-capsule">
+        <span class="date-num">11</span>
+        <span class="date-divider"></span>
+        <span class="date-month-year">Октября 2026</span>
+        <span class="date-divider"></span>
+        <span class="date-num">15:00</span>
+      </div>
+
+      <!-- Live Countdown -->
+      <div class="countdown-wrapper">
+        <div class="countdown-title">До торжества осталось</div>
+        <div class="countdown-grid">
+          <div class="countdown-item">
+            <span class="countdown-value" id="cd-days">00</span>
+            <span class="countdown-label">дней</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" id="cd-hours">00</span>
+            <span class="countdown-label">часов</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" id="cd-mins">00</span>
+            <span class="countdown-label">минут</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" id="cd-secs">00</span>
+            <span class="countdown-label">секунд</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Cue -->
+      <div class="scroll-down-hint">
+        <span class="scroll-down-text">Листайте вниз</span>
+        <svg class="scroll-down-arrow" viewBox="0 0 24 24">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ── 2. CALENDAR SECTION ── -->
+    <section class="card-section fade-up" id="sec-calendar">
+      <div class="eyebrow-badge">Сохраните дату</div>
+      <h2 class="section-title">Октябрь 2026</h2>
+      <p class="body-lead">
+        День, когда начнется наша общая семейная история.<br>
+        Отметьте эту особенную дату в вашем календаре:
+      </p>
+
+      <!-- Responsive Calendar for October 2026 -->
+      <div class="calendar-container">
+        <div class="calendar-grid">
+          <!-- Weekdays Header -->
+          <div class="cal-weekday">Пн</div>
+          <div class="cal-weekday">Вт</div>
+          <div class="cal-weekday">Ср</div>
+          <div class="cal-weekday">Чт</div>
+          <div class="cal-weekday">Пт</div>
+          <div class="cal-weekday weekend">Сб</div>
+          <div class="cal-weekday weekend">Вс</div>
+
+          <!-- October 1 starts on Thursday (3 empty slots: Mon, Tue, Wed) -->
+          <div class="cal-day empty"></div>
+          <div class="cal-day empty"></div>
+          <div class="cal-day empty"></div>
+          <div class="cal-day">1</div>
+          <div class="cal-day">2</div>
+          <div class="cal-day weekend">3</div>
+          <div class="cal-day weekend">4</div>
+
+          <div class="cal-day">5</div>
+          <div class="cal-day">6</div>
+          <div class="cal-day">7</div>
+          <div class="cal-day">8</div>
+          <div class="cal-day">9</div>
+          <div class="cal-day weekend">10</div>
+          
+          <!-- DAY 11: WEDDING DAY (Highlighted with animated heart) -->
+          <div class="cal-day wedding-day weekend" id="wedding-day-cell">
+            11
+            <div class="wedding-day-heart" id="heart-anim-wrapper">
+              <svg viewBox="0 0 40 40">
+                <path class="heart-path" d="M20 33 C8 24, 4 14, 11 8 C15 5, 20 8, 20 12 C20 8, 25 5, 29 8 C36 14, 32 24, 20 33 Z"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="cal-day">12</div>
+          <div class="cal-day">13</div>
+          <div class="cal-day">14</div>
+          <div class="cal-day">15</div>
+          <div class="cal-day">16</div>
+          <div class="cal-day weekend">17</div>
+          <div class="cal-day weekend">18</div>
+
+          <div class="cal-day">19</div>
+          <div class="cal-day">20</div>
+          <div class="cal-day">21</div>
+          <div class="cal-day">22</div>
+          <div class="cal-day">23</div>
+          <div class="cal-day weekend">24</div>
+          <div class="cal-day weekend">25</div>
+
+          <div class="cal-day">26</div>
+          <div class="cal-day">27</div>
+          <div class="cal-day">28</div>
+          <div class="cal-day">29</div>
+          <div class="cal-day">30</div>
+          <div class="cal-day weekend">31</div>
+          <div class="cal-day empty"></div>
+        </div>
+      </div>
+
+      <!-- Add to Calendar (.ics Download) Button -->
+      <a href="#" class="btn-action" id="btn-add-calendar" role="button">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        Добавить в календарь
+      </a>
+    </section>
+
+    <!-- ── 3. TIMELINE / PROGRAM SECTION ── -->
+    <section class="card-section fade-up" id="sec-program">
+      <div class="eyebrow-badge">Программа дня</div>
+      <h2 class="section-title">Тайминг событий</h2>
+      <p class="body-lead">
+        Каждый момент этого дня наполнен теплом и радостью.<br>
+        Вот как пройдёт наш праздничный вечер:
+      </p>
+
+      <div class="timeline-list">
+        <!-- 15:00 -->
+        <div class="timeline-item">
+          <div class="timeline-time">15:00</div>
+          <div class="timeline-line-col">
+            <div class="timeline-icon-badge">
+              <!-- Champagne Flute SVG -->
+              <svg viewBox="0 0 24 24"><path d="M8 22h8M12 15v7M16 3l1 7a5 5 0 01-10 0l1-7h8z"/></svg>
+            </div>
+            <div class="timeline-stem"></div>
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-event-title">Сбор гостей &amp; Welcome</h3>
+            <p class="timeline-event-desc">Встреча гостей, легкие аперитивы, живая музыка, объятия и памятные фото.</p>
+          </div>
+        </div>
+
+        <!-- 16:00 -->
+        <div class="timeline-item">
+          <div class="timeline-time">16:00</div>
+          <div class="timeline-line-col">
+            <div class="timeline-icon-badge">
+              <!-- Wedding Rings SVG -->
+              <svg viewBox="0 0 24 24"><circle cx="9" cy="12" r="5"/><circle cx="15" cy="12" r="5"/></svg>
+            </div>
+            <div class="timeline-stem"></div>
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-event-title">Торжественная церемония</h3>
+            <p class="timeline-event-desc">Самый трогательный момент обмена клятвами любви и верности перед близкими.</p>
+          </div>
+        </div>
+
+        <!-- 17:00 -->
+        <div class="timeline-item">
+          <div class="timeline-time">17:00</div>
+          <div class="timeline-line-col">
+            <div class="timeline-icon-badge">
+              <!-- Banquet/Dinner SVG -->
+              <svg viewBox="0 0 24 24"><path d="M3 18h18M4 14a8 8 0 0116 0H4zM12 6v2"/></svg>
+            </div>
+            <div class="timeline-stem"></div>
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-event-title">Праздничный банкет</h3>
+            <p class="timeline-event-desc">Изысканный ужин, искренние поздравления, зажигательные танцы и шоу-программа.</p>
+          </div>
+        </div>
+
+        <!-- 21:00 -->
+        <div class="timeline-item">
+          <div class="timeline-time">21:00</div>
+          <div class="timeline-line-col">
+            <div class="timeline-icon-badge">
+              <!-- Cake / Sparkler SVG -->
+              <svg viewBox="0 0 24 24"><path d="M12 2l2 4 4 1-3 3 1 4-4-2-4 2 1-4-3-3 4-1zM4 22h16"/></svg>
+            </div>
+            <div class="timeline-stem"></div>
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-event-title">Свадебный торт &amp; Финал</h3>
+            <p class="timeline-event-desc">Сладкая кульминация вечера, бенгальские огни и романтическое завершение.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 4. LOCATION & MAPS SECTION ── -->
+    <section class="card-section fade-up" id="sec-location">
+      <div class="eyebrow-badge">Место проведения</div>
+      <h2 class="section-title">Локация торжества</h2>
+      <p class="body-lead">Будем рады встречать вас в прекрасном ресторане:</p>
+
+      <div class="location-box">
+        <h3 class="venue-name">Ресторан «Grand Palace»</h3>
+        <div class="venue-address">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          ул. Счастливая, д. 7
+        </div>
+
+        <div class="map-buttons-grid">
+          <!-- Yandex Maps link -->
+          <a href="https://yandex.ru/maps/?text=%D1%83%D0%BB.+%D0%A1%D1%87%D0%B0%D1%81%D1%82%D0%BB%D0%B8%D0%B2%D0%B0%D1%8F%2C+%D0%B4.+7" target="_blank" rel="noopener noreferrer" class="btn-nav">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            Яндекс Карты
+          </a>
+
+          <!-- 2GIS link -->
+          <a href="https://2gis.ru/search/%D1%83%D0%BB.+%D0%A1%D1%87%D0%B0%D1%81%D1%82%D0%BB%D0%B8%D0%B2%D0%B0%D1%8F%2C+%D0%B4.+7" target="_blank" rel="noopener noreferrer" class="btn-nav">
+            <svg viewBox="0 0 24 24"><path d="M12 2a8 8 0 00-8 8c0 5.4 7.05 11.5 7.35 11.76a1 1 0 001.3 0C12.95 21.5 20 15.4 20 10a8 8 0 00-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z"/></svg>
+            2ГИС
+          </a>
+
+          <!-- Copy Address button -->
+          <button type="button" class="btn-nav btn-copy-address" id="btn-copy-address">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg>
+            Скопировать адрес
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 5. DRESS CODE & WISHES SECTION ── -->
+    <section class="card-section fade-up" id="sec-dresscode">
+      <div class="eyebrow-badge">Дресс-код &amp; Детали</div>
+      <h2 class="section-title">Цветовая палитра</h2>
+      <p class="body-lead">
+        Нам будет невероятно приятно, если вы поддержите нежную цветовую гамму нашего торжества:
+      </p>
+
+      <div class="palette-wrapper">
+        <div class="palette-circles">
+          <div class="palette-circle-item">
+            <div class="palette-swatch" style="background-color: #E8A0A8;" title="Розовый кварц"></div>
+            <span class="palette-swatch-name">Кварц</span>
+          </div>
+          <div class="palette-circle-item">
+            <div class="palette-swatch" style="background-color: #EBD4B4;" title="Шампань"></div>
+            <span class="palette-swatch-name">Шампань</span>
+          </div>
+          <div class="palette-circle-item">
+            <div class="palette-swatch" style="background-color: #C47A85;" title="Пыльная роза"></div>
+            <span class="palette-swatch-name">Роза</span>
+          </div>
+          <div class="palette-circle-item">
+            <div class="palette-swatch" style="background-color: #98AA90;" title="Оливковый шалфей"></div>
+            <span class="palette-swatch-name">Шалфей</span>
+          </div>
+          <div class="palette-circle-item">
+            <div class="palette-swatch" style="background-color: #A88679;" title="Теплый мокко"></div>
+            <span class="palette-swatch-name">Мокко</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wedding Wishes -->
+      <div class="wishes-grid">
+        <div class="wish-card">
+          <div class="wish-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 00-4 4c0 3 4 7 4 7s4-4 4-7a4 4 0 00-4-4zM12 13v9M8 18h8"/></svg>
+          </div>
+          <div class="wish-body">
+            <h4>Цветы &amp; Подарки</h4>
+            <p>Главный подарок для нас — ваше присутствие! Вместо срезанных букетов мы будем искренне рады любимому сорту чая, книге или памятной открытке.</p>
+          </div>
+        </div>
+
+        <div class="wish-card">
+          <div class="wish-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div class="wish-body">
+            <h4>Атмосфера вечера</h4>
+            <p>Чтобы вы могли сполна отдохнуть, потанцевать и насладиться атмосферой, рекомендуем провести этот вечер во взрослой компании.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 6. RSVP ATTENDANCE FORM SECTION ── -->
+    <section class="card-section fade-up" id="sec-rsvp">
+      <div class="eyebrow-badge">Анкета гостя</div>
+      <h2 class="section-title">Подтверждение присутствия</h2>
+      <p class="body-lead">
+        Пожалуйста, подтвердите ваше участие <strong>до 15 сентября 2026</strong>,<br>
+        чтобы мы могли с заботой подготовить ваше место:
+      </p>
+
+      <form class="rsvp-form" id="rsvp-form">
+        <!-- Guest Name Input -->
+        <div class="form-group">
+          <label class="form-label" for="guest-name">Ваше имя и фамилия</label>
+          <input type="text" id="guest-name" class="form-input" placeholder="Например, Александр и Анна" required />
+        </div>
+
+        <!-- Attendance Choice -->
+        <div class="form-group">
+          <label class="form-label">Сможете ли вы прийти?</label>
+          <div class="options-grid">
+            <label class="option-chip selected" id="chip-opt-1">
+              <input type="radio" name="attendance" value="yes" checked />
+              <span class="option-chip-text">С радостью приду!</span>
+            </label>
+            <label class="option-chip" id="chip-opt-2">
+              <input type="radio" name="attendance" value="pair" />
+              <span class="option-chip-text">Буду с парой / спутником</span>
+            </label>
+            <label class="option-chip" id="chip-opt-3">
+              <input type="radio" name="attendance" value="no" />
+              <span class="option-chip-text">К сожалению, не смогу присутствовать</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Companion Name Input (Dynamic) -->
+        <div class="form-group" id="companion-group" style="display: none;">
+          <label class="form-label" for="companion-name">Имя вашего спутника/спутницы</label>
+          <input type="text" id="companion-name" class="form-input" placeholder="Имя и фамилия спутника" />
+        </div>
+
+        <!-- Drink Preferences -->
+        <div class="form-group" id="drinks-group">
+          <label class="form-label">Предпочтения по напиткам</label>
+          <div class="options-grid">
+            <label class="option-chip selected">
+              <input type="checkbox" name="drinks" value="wine" checked />
+              <span class="option-chip-text">Вино (белое / красное)</span>
+            </label>
+            <label class="option-chip">
+              <input type="checkbox" name="drinks" value="sparkling" />
+              <span class="option-chip-text">Игристое / Шампанское</span>
+            </label>
+            <label class="option-chip">
+              <input type="checkbox" name="drinks" value="strong" />
+              <span class="option-chip-text">Крепкие напитки</span>
+            </label>
+            <label class="option-chip">
+              <input type="checkbox" name="drinks" value="soft" />
+              <span class="option-chip-text">Безалкогольные напитки</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- DJ Song Wish (Interactive fun addition) -->
+        <div class="form-group" id="song-group">
+          <label class="form-label" for="guest-song">Любимый трек для танцев 🎶 (по желанию)</label>
+          <input type="text" id="guest-song" class="form-input" placeholder="Исполнитель и название любимой песни" />
+        </div>
+
+        <button type="submit" class="btn-submit" id="btn-submit-rsvp">
+          Отправить подтверждение
+        </button>
+      </form>
+
+      <!-- Success Confirmation Box -->
+      <div class="rsvp-success-box" id="rsvp-success-box">
+        <div class="success-heart-icon">&#10084;</div>
+        <h3 class="section-title" style="margin-bottom: 8px;">Спасибо за ваш ответ!</h3>
+        <p class="body-lead" id="rsvp-success-text">
+          Мы получили ваше подтверждение и будем счастливы видеть вас на нашем празднике!
+        </p>
+      </div>
+    </section>
+
+    <!-- ── 7. CLOSING SECTION ── -->
+    <section class="card-section closing-card fade-up" id="sec-closing">
+      <p class="closing-quote">
+        «Любовь не в том, чтобы смотреть друг на друга,<br>
+        а в том, чтобы смотреть вместе в одном направлении»
+      </p>
+
+      <div class="closing-names">
+        Муродбек &amp; Баргида
+      </div>
+
+      <div class="closing-date-badge">
+        11 · ОКТЯБРЯ · 2026
+      </div>
+
+      <!-- Symmetrical Bottom Blossom Flurry SVG -->
+      <svg class="botanical-header-svg" style="transform: scaleY(-1); margin-top: 24px;" viewBox="0 0 340 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M40 20 Q120 70 170 55 Q220 70 300 20" stroke="#C8A452" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+        <circle cx="170" cy="55" r="4" fill="#B84D60"/>
+        <circle cx="120" cy="48" r="3" fill="#C8A452"/>
+        <circle cx="220" cy="48" r="3" fill="#C8A452"/>
+      </svg>
+    </section>
+
+  </div>
+
+  <!-- =========================================================
+       JAVASCRIPT LOGIC
+       ========================================================= -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Register GSAP plugins
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+      }
+
+      /* ---------------------------------------------------------
+         1. AUDIO ENGINE: Web Audio API Romantic Wedding Chords
+         --------------------------------------------------------- */
+      let audioCtx = null;
+      let isMusicPlaying = false;
+      let musicInterval = null;
+      const musicBtn = document.getElementById('music-btn');
+
+      function initAudio() {
+        if (!audioCtx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+      }
+
+      // Elegant acoustic harp / celesta note synthesizer
+      function playNote(freq, delay = 0, duration = 2.4) {
+        if (!audioCtx || !isMusicPlaying) return;
+        setTimeout(() => {
+          if (!isMusicPlaying) return;
+          try {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            // Soft sine + gentle warm harmonics
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+            // Natural plucked string envelope
+            const now = audioCtx.currentTime;
+            gain.gain.setValueAtTime(0, now);
+            gain.gain.linearRampToValueAtTime(0.08, now + 0.04);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start(now);
+            osc.stop(now + duration);
+          } catch (e) {
+            console.warn(e);
+          }
+        }, delay);
+      }
+
+      // Romantic Canon-in-D inspired melody sequence in C major / A minor
+      const chordPatterns = [
+        [261.63, 329.63, 392.00, 523.25], // C major
+        [196.00, 246.94, 293.66, 392.00], // G major
+        [220.00, 261.63, 329.63, 440.00], // A minor
+        [174.61, 220.00, 261.63, 349.23], // F major
+      ];
+      const bassNotes = [130.81, 98.00, 110.00, 87.31]; // Warm acoustic cello resonance
+      let chordIndex = 0;
+
+      function playArpeggioStep() {
+        if (!isMusicPlaying) return;
+        const notes = chordPatterns[chordIndex % chordPatterns.length];
+        const bass = bassNotes[chordIndex % bassNotes.length];
+        chordIndex++;
+        // Play deep warm bass note
+        playNote(bass, 0, 3.0);
+        // Play rising harp arpeggios
+        notes.forEach((freq, idx) => {
+          playNote(freq, idx * 360, 2.8);
+        });
+      }
+
+      // Realistic Wax Seal Breaking Pop + Crystal Chime Sound Effect
+      function playSealCrackSound() {
+        initAudio();
+        if (!audioCtx) return;
+        try {
+          const now = audioCtx.currentTime;
+          // Noise pop (crack of seal)
+          const bufferSize = audioCtx.sampleRate * 0.05;
+          const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+          const data = buffer.getChannelData(0);
+          for (let i = 0; i < bufferSize; i++) {
+            data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.2));
+          }
+          const noise = audioCtx.createBufferSource();
+          noise.buffer = buffer;
+          const noiseFilter = audioCtx.createBiquadFilter();
+          noiseFilter.type = 'lowpass';
+          noiseFilter.frequency.value = 800;
+          const noiseGain = audioCtx.createGain();
+          noiseGain.gain.setValueAtTime(0.18, now);
+          noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+          noise.connect(noiseFilter);
+          noiseFilter.connect(noiseGain);
+          noiseGain.connect(audioCtx.destination);
+          noise.start(now);
+
+          // Ethereal crystal chime chord (C6, E6, G6, C7)
+          const chimeNotes = [1046.50, 1318.51, 1567.98, 2093.00];
+          chimeNotes.forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const g = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+            g.gain.setValueAtTime(0, now + idx * 0.07);
+            g.gain.linearRampToValueAtTime(0.07, now + idx * 0.07 + 0.02);
+            g.gain.exponentialRampToValueAtTime(0.0001, now + idx * 0.07 + 1.8);
+            osc.connect(g);
+            g.connect(audioCtx.destination);
+            osc.start(now + idx * 0.07);
+            osc.stop(now + idx * 0.07 + 1.8);
+          });
+        } catch (e) {
+          console.warn(e);
+        }
+      }
+
+      function startRomanticMusic() {
+        initAudio();
+        isMusicPlaying = true;
+        musicBtn.classList.add('playing');
+        playArpeggioStep();
+        if (musicInterval) clearInterval(musicInterval);
+        musicInterval = setInterval(playArpeggioStep, 2400);
+      }
+
+      function stopRomanticMusic() {
+        isMusicPlaying = false;
+        musicBtn.classList.remove('playing');
+        if (musicInterval) clearInterval(musicInterval);
+      }
+
+      musicBtn.addEventListener('click', () => {
+        if (isMusicPlaying) {
+          stopRomanticMusic();
+        } else {
+          startRomanticMusic();
+        }
+      });
+
+      /* ---------------------------------------------------------
+         2. INTERACTIVE ENVELOPE OPENING EXPERIENCE
+         --------------------------------------------------------- */
+      const envIntro = document.getElementById('envelope-intro');
+      const envBox = document.getElementById('envelope-box');
+      const openEnvBtn = document.getElementById('open-envelope-btn');
+
+      let hasOpened = false;
+      function triggerEnvelopeOpen() {
+        if (hasOpened) return;
+        hasOpened = true;
+        envBox.classList.add('is-opening');
+        // Tactile wax break sound
+        playSealCrackSound();
+        // Confetti & Petals burst
+        fireConfetti(window.innerWidth / 2, window.innerHeight * 0.45);
+        // Start romantic ambient melody automatically upon user interaction!
+        startRomanticMusic();
+
+        setTimeout(() => {
+          envIntro.classList.add('opened');
+          // Start Hero entrance animation
+          runHeroAnimations();
+        }, 850);
+      }
+
+      envBox.addEventListener('click', triggerEnvelopeOpen);
+      openEnvBtn.addEventListener('click', triggerEnvelopeOpen);
+
+      // Mobile Touch Swipe Up to Open
+      let touchStartY = 0;
+      envIntro.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches[0]) touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      envIntro.addEventListener('touchend', (e) => {
+        if (e.changedTouches && e.changedTouches[0]) {
+          const touchEndY = e.changedTouches[0].clientY;
+          if (touchStartY - touchEndY > 35) triggerEnvelopeOpen();
+        }
+      }, { passive: true });
+
+      // Desktop Wheel Scroll Down to Open
+      window.addEventListener('wheel', (e) => {
+        if (!hasOpened && e.deltaY > 20) triggerEnvelopeOpen();
+      }, { passive: true });
+
+      /* ---------------------------------------------------------
+         3. CANVAS: FLOATING SAKURA PETALS & GOLD DUST
+         --------------------------------------------------------- */
+      const cv = document.getElementById('ambient-canvas');
+      const ctx = cv.getContext('2d');
+      let W, H;
+      const petals = [];
+      const PETAL_COUNT = window.innerWidth < 500 ? 24 : 38;
+
+      function resizeAmbientCanvas() {
+        W = cv.width = window.innerWidth;
+        H = cv.height = window.innerHeight;
+      }
+      resizeAmbientCanvas();
+      window.addEventListener('resize', resizeAmbientCanvas, { passive: true });
+
+      class Petal {
+        constructor() {
+          this.reset(true);
+        }
+        reset(initial = false) {
+          this.x = Math.random() * W;
+          this.y = initial ? Math.random() * H : -30;
+          this.size = Math.random() * 8 + 6;
+          this.speedY = Math.random() * 0.8 + 0.4;
+          this.speedX = Math.random() * 0.4 - 0.2;
+          this.rotation = Math.random() * Math.PI * 2;
+          this.rotationSpeed = Math.random() * 0.02 - 0.01;
+          this.flip = Math.random() * Math.PI;
+          this.flipSpeed = Math.random() * 0.02 + 0.01;
+          this.isGoldDust = Math.random() < 0.25;
+          this.opacity = Math.random() * 0.5 + 0.35;
+        }
+        update() {
+          this.y += this.speedY;
+          this.x += this.speedX + Math.sin(this.y * 0.008) * 0.4;
+          this.rotation += this.rotationSpeed;
+          this.flip += this.flipSpeed;
+          if (this.y > H + 20) {
+            this.reset();
+          }
+        }
+        draw() {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.rotation);
+          ctx.scale(1, Math.cos(this.flip));
+
+          if (this.isGoldDust) {
+            ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity * 0.8})`;
+            ctx.beginPath();
+            ctx.arc(0, 0, this.size * 0.4, 0, Math.PI * 2);
+            ctx.fill();
+          } else {
+            // Sakura Petal
+            ctx.fillStyle = `rgba(234, 166, 175, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.moveTo(0, -this.size);
+            ctx.bezierCurveTo(this.size * 0.6, -this.size * 0.4, this.size * 0.6, this.size * 0.6, 0, this.size);
+            ctx.bezierCurveTo(-this.size * 0.6, this.size * 0.6, -this.size * 0.6, -this.size * 0.4, 0, -this.size);
+            ctx.fill();
+          }
+          ctx.restore();
+        }
+      }
+
+      for (let i = 0; i < PETAL_COUNT; i++) {
+        petals.push(new Petal());
+      }
+
+      // Touch & Pointer Magic Sparkles Array
+      const touchSparkles = [];
+      function addSparkle(x, y) {
+        for (let i = 0; i < 2; i++) {
+          touchSparkles.push({
+            x: x + (Math.random() * 16 - 8),
+            y: y + (Math.random() * 16 - 8),
+            vx: (Math.random() - 0.5) * 1.6,
+            vy: (Math.random() - 0.5) * 1.6 - 0.6,
+            size: Math.random() * 4.5 + 2.5,
+            rot: Math.random() * Math.PI * 2,
+            rotSpd: (Math.random() - 0.5) * 0.1,
+            life: 1,
+            decay: Math.random() * 0.035 + 0.02,
+            isGold: Math.random() > 0.35,
+          });
+        }
+      }
+
+      function addTapPetals(x, y) {
+        const count = 6;
+        for (let i = 0; i < count; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = Math.random() * 4.2 + 2.0;
+          touchSparkles.push({
+            x: x,
+            y: y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed - 1.2,
+            size: Math.random() * 8 + 11, // 11px to 19px
+            rot: Math.random() * Math.PI * 2,
+            rotSpd: (Math.random() - 0.5) * 0.08,
+            flip: Math.random() * Math.PI,
+            flipSpd: Math.random() * 0.07 + 0.03,
+            life: 1,
+            decay: 0.012, // floats gracefully for longer!
+            isPetal: true,
+            colorVariant: Math.random(),
+          });
+        }
+      }
+
+      window.addEventListener('pointermove', (e) => {
+        addSparkle(e.clientX, e.clientY);
+      }, { passive: true });
+
+      window.addEventListener('pointerdown', (e) => {
+        addTapPetals(e.clientX, e.clientY);
+      }, { passive: true });
+
+      function animateAmbient() {
+        ctx.clearRect(0, 0, W, H);
+        for (let i = 0; i < petals.length; i++) {
+          petals[i].update();
+          petals[i].draw();
+        }
+
+        // Render Touch Sparkles & Tap-to-Bloom Petals
+        for (let i = touchSparkles.length - 1; i >= 0; i--) {
+          const s = touchSparkles[i];
+          s.x += s.vx;
+          s.y += s.vy;
+          s.rot += s.rotSpd;
+          s.life -= s.decay;
+
+          if (s.life <= 0) {
+            touchSparkles.splice(i, 1);
+            continue;
+          }
+
+          ctx.save();
+          ctx.translate(s.x, s.y);
+          ctx.rotate(s.rot);
+          ctx.globalAlpha = s.life;
+
+          if (s.isPetal) {
+            s.flip = (s.flip || 0) + (s.flipSpd || 0.05);
+            ctx.scale(1, Math.cos(s.flip));
+            ctx.shadowColor = 'rgba(184, 77, 96, 0.45)';
+            ctx.shadowBlur = 8;
+            
+            // Rich radial gradient for delicate translucent petal
+            const pGrad = ctx.createRadialGradient(0, -s.size * 0.3, 0, 0, 0, s.size);
+            if (s.colorVariant > 0.5) {
+              pGrad.addColorStop(0, '#FFFFFF');
+              pGrad.addColorStop(0.4, '#FAD1D8');
+              pGrad.addColorStop(1, '#E58593');
+            } else {
+              pGrad.addColorStop(0, '#FFF5F6');
+              pGrad.addColorStop(0.5, '#F5B8C2');
+              pGrad.addColorStop(1, '#D96E7F');
+            }
+            ctx.fillStyle = pGrad;
+            ctx.beginPath();
+            ctx.moveTo(0, -s.size);
+            ctx.bezierCurveTo(s.size * 0.65, -s.size * 0.45, s.size * 0.65, s.size * 0.65, 0, s.size);
+            ctx.bezierCurveTo(-s.size * 0.65, s.size * 0.65, -s.size * 0.65, -s.size * 0.45, 0, -s.size);
+            ctx.fill();
+
+            // Delicate white vein
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.65)';
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(0, -s.size * 0.7);
+            ctx.lineTo(0, s.size * 0.5);
+            ctx.stroke();
+          } else {
+            // 4-pointed golden sparkle star
+            ctx.fillStyle = s.isGold ? '#FFE29A' : '#FFFFFF';
+            ctx.beginPath();
+            ctx.moveTo(0, -s.size);
+            ctx.quadraticCurveTo(0, 0, s.size, 0);
+            ctx.quadraticCurveTo(0, 0, 0, s.size);
+            ctx.quadraticCurveTo(0, 0, -s.size, 0);
+            ctx.quadraticCurveTo(0, 0, 0, -s.size);
+            ctx.fill();
+          }
+          ctx.restore();
+        }
+
+        requestAnimationFrame(animateAmbient);
+      }
+      animateAmbient();
+
+      /* ---------------------------------------------------------
+         4. CANVAS: CELEBRATION CONFETTI ENGINE (For RSVP & Intro)
+         --------------------------------------------------------- */
+      const cCv = document.getElementById('confetti-canvas');
+      const cCtx = cCv.getContext('2d');
+      let cW, cH;
+      let confettiPieces = [];
+
+      function resizeConfetti() {
+        cW = cCv.width = window.innerWidth;
+        cH = cCv.height = window.innerHeight;
+      }
+      resizeConfetti();
+      window.addEventListener('resize', resizeConfetti, { passive: true });
+
+      const CONFETTI_COLORS = ['#B84D60', '#C8A452', '#E89FA8', '#FCE1E4', '#7D9476', '#EED89E'];
+
+      function fireConfetti(originX, originY) {
+        for (let i = 0; i < 70; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = Math.random() * 8 + 4;
+          confettiPieces.push({
+            x: originX,
+            y: originY,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed - 4,
+            size: Math.random() * 8 + 4,
+            color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)],
+            rotation: Math.random() * 360,
+            rotationSpeed: Math.random() * 12 - 6,
+            gravity: 0.22,
+            drag: 0.98,
+            life: 1,
+            decay: Math.random() * 0.015 + 0.01
+          });
+        }
+      }
+
+      function updateConfetti() {
+        cCtx.clearRect(0, 0, cW, cH);
+        for (let i = confettiPieces.length - 1; i >= 0; i--) {
+          const p = confettiPieces[i];
+          p.vx *= p.drag;
+          p.vy = p.vy * p.drag + p.gravity;
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rotation += p.rotationSpeed;
+          p.life -= p.decay;
+
+          if (p.life <= 0) {
+            confettiPieces.splice(i, 1);
+            continue;
+          }
+
+          cCtx.save();
+          cCtx.translate(p.x, p.y);
+          cCtx.rotate((p.rotation * Math.PI) / 180);
+          cCtx.globalAlpha = p.life;
+          cCtx.fillStyle = p.color;
+          cCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+          cCtx.restore();
+        }
+        requestAnimationFrame(updateConfetti);
+      }
+      updateConfetti();
+
+      /* ---------------------------------------------------------
+         5. COUNTDOWN ENGINE: 11 October 2026, 15:00 (+05:00)
+         --------------------------------------------------------- */
+      const targetDate = new Date('2026-10-11T15:00:00+05:00').getTime();
+      const elDays = document.getElementById('cd-days');
+      const elHours = document.getElementById('cd-hours');
+      const elMins = document.getElementById('cd-mins');
+      const elSecs = document.getElementById('cd-secs');
+
+      function updateCountdown() {
+        const now = Date.now();
+        const diff = Math.max(0, targetDate - now);
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        const pad = (n) => String(n).padStart(2, '0');
+        elDays.textContent = pad(days);
+        elHours.textContent = pad(hours);
+        elMins.textContent = pad(mins);
+        const newSecs = pad(secs);
+        if (elSecs.textContent !== newSecs) {
+          elSecs.textContent = newSecs;
+          const card = elSecs.closest('.countdown-item');
+          if (card) {
+            card.classList.add('tick-pulse');
+            setTimeout(() => card.classList.remove('tick-pulse'), 350);
+          }
+        }
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // Golden Scroll Progress Bar & 3D Card Parallax Tilt
+      const scrollProgressBar = document.getElementById('scroll-progress-bar');
+      const allCards = document.querySelectorAll('.card-section');
+
+      window.addEventListener('scroll', () => {
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = h > 0 ? (window.scrollY / h) * 100 : 0;
+        if (scrollProgressBar) {
+          scrollProgressBar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+        }
+      }, { passive: true });
+
+      function handleCardTilt(nx, ny) {
+        allCards.forEach((c) => {
+          const rx = (ny - 0.5) * -4.5;
+          const ry = (nx - 0.5) * 4.5;
+          c.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+        });
+      }
+
+      window.addEventListener('pointermove', (e) => {
+        handleCardTilt(e.clientX / window.innerWidth, e.clientY / window.innerHeight);
+      }, { passive: true });
+
+      if (window.DeviceOrientationEvent) {
+        window.addEventListener('deviceorientation', (e) => {
+          if (e.gamma !== null && e.beta !== null) {
+            const nx = Math.min(1, Math.max(0, (e.gamma + 25) / 50));
+            const ny = Math.min(1, Math.max(0, (e.beta - 15) / 50));
+            handleCardTilt(nx, ny);
+          }
+        }, { passive: true });
+      }
+
+      /* ---------------------------------------------------------
+         6. GSAP SCROLL & ENTRANCE ANIMATIONS
+         --------------------------------------------------------- */
+      function runHeroAnimations() {
+        if (typeof gsap === 'undefined') return;
+        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+        tl.fromTo('.hero-card', { opacity: 0, y: 50, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 1.1 })
+          .fromTo('.botanical-header-svg', { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.9 }, '-=0.8')
+          .fromTo('.hero-greeting', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8 }, '-=0.6')
+          .fromTo('.hero-intro-text', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8 }, '-=0.6')
+          .fromTo('.name-groom', { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.9, ease: 'back.out(1.4)' }, '-=0.5')
+          .fromTo('.names-ampersand', { opacity: 0, scale: 0.4, rotate: -20 }, { opacity: 1, scale: 1, rotate: 0, duration: 0.7, ease: 'back.out(2)' }, '-=0.7')
+          .fromTo('.name-bride', { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.9, ease: 'back.out(1.4)' }, '-=0.7')
+          .fromTo('.date-capsule', { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.7, ease: 'back.out(1.6)' }, '-=0.5')
+          .fromTo('.countdown-wrapper', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.7 }, '-=0.4');
+      }
+
+      // ScrollTrigger for other sections
+      if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        const sections = document.querySelectorAll('.card-section:not(.hero-card)');
+        sections.forEach((sec) => {
+          gsap.fromTo(
+            sec,
+            { opacity: 0, y: 40 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.85,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: sec,
+                start: 'top 82%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        });
+
+        // Draw Heart around October 11 when Calendar is visible
+        ScrollTrigger.create({
+          trigger: '#sec-calendar',
+          start: 'top 75%',
+          once: true,
+          onEnter: () => {
+            setTimeout(() => {
+              const heartWrapper = document.getElementById('heart-anim-wrapper');
+              if (heartWrapper) heartWrapper.classList.add('drawn');
+            }, 300);
+          },
+        });
+      }
+
+      /* ---------------------------------------------------------
+         7. ADD TO CALENDAR (.ICS FILE GENERATION)
+         --------------------------------------------------------- */
+      const btnCalendar = document.getElementById('btn-add-calendar');
+      btnCalendar.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const icsData = [
+          'BEGIN:VCALENDAR',
+          'VERSION:2.0',
+          'PRODID:-//Wedding Invitation//Murodbek and Bargida//RU',
+          'CALSCALE:GREGORIAN',
+          'METHOD:PUBLISH',
+          'BEGIN:VEVENT',
+          'SUMMARY:Свадьба Муродбека и Баргиды',
+          'DESCRIPTION:Свадебное торжество Муродбека и Баргиды. Ресторан «Grand Palace», ул. Счастливая, д. 7.',
+          'LOCATION:Ресторан «Grand Palace», ул. Счастливая, д. 7',
+          'DTSTART:20261011T100000Z', // 15:00 UTC+5
+          'DTEND:20261011T180000Z',
+          'STATUS:CONFIRMED',
+          'END:VEVENT',
+          'END:VCALENDAR',
+        ].join('\r\n');
+
+        const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+        const link = document.createElement('a');
+        link.href = window.URL.createObjectURL(blob);
+        link.setAttribute('download', 'Murodbek_Bargida_Wedding_2026.ics');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        showToast('Событие добавлено в календарь!');
+      });
+
+      /* ---------------------------------------------------------
+         8. COPY ADDRESS TO CLIPBOARD WITH TOAST
+         --------------------------------------------------------- */
+      const btnCopy = document.getElementById('btn-copy-address');
+      const toast = document.getElementById('toast-popup');
+      let toastTimer = null;
+
+      function showToast(msg = 'Адрес скопирован!') {
+        toast.textContent = msg;
+        toast.classList.add('visible');
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.remove('visible');
+        }, 2800);
+      }
+
+      btnCopy.addEventListener('click', () => {
+        const address = 'Ресторан «Grand Palace», ул. Счастливая, д. 7';
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(address).then(() => {
+            showToast('Адрес скопирован в буфер обмена!');
+          });
+        } else {
+          showToast('Адрес: ул. Счастливая, д. 7');
+        }
+      });
+
+      /* ---------------------------------------------------------
+         9. RSVP FORM SUBMISSION
+         --------------------------------------------------------- */
+      const rsvpForm = document.getElementById('rsvp-form');
+      const rsvpSuccess = document.getElementById('rsvp-success-box');
+      const rsvpSuccessText = document.getElementById('rsvp-success-text');
+      const chips = document.querySelectorAll('.option-chip');
+
+      const companionGroup = document.getElementById('companion-group');
+
+      // Chip selection styling & companion field toggle
+      chips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          const radio = chip.querySelector('input[type="radio"]');
+          if (radio) {
+            document.querySelectorAll('input[name="attendance"]').forEach((r) => {
+              r.closest('.option-chip').classList.remove('selected');
+            });
+            chip.classList.add('selected');
+
+            // Show or hide companion input field
+            if (radio.value === 'pair') {
+              companionGroup.style.display = 'flex';
+            } else {
+              companionGroup.style.display = 'none';
+            }
+          }
+          const checkbox = chip.querySelector('input[type="checkbox"]');
+          if (checkbox) {
+            chip.classList.toggle('selected', checkbox.checked);
+          }
+        });
+      });
+
+      rsvpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const guestName = document.getElementById('guest-name').value.trim();
+        const companionName = document.getElementById('companion-name')?.value.trim();
+        const guestSong = document.getElementById('guest-song')?.value.trim();
+        const attendanceVal = document.querySelector('input[name="attendance"]:checked')?.value;
+
+        const songNote = guestSong ? `<br><span style="font-size:0.95rem;color:var(--gold-deep);margin-top:6px;display:block;">🎶 Любимый трек «${guestSong}» добавлен в плейлист для диджея!</span>` : '';
+
+        if (attendanceVal === 'no') {
+          rsvpSuccessText.innerHTML = `Дорогой(ая) ${guestName}, спасибо за ответ! Нам очень жаль, что вы не сможете быть с нами, но мы чувствуем ваше тепло и добрые пожелания.`;
+        } else if (attendanceVal === 'pair' && companionName) {
+          rsvpSuccessText.innerHTML = `Дорогие ${guestName} и ${companionName}, спасибо за подтверждение! Мы с огромной радостью ждем встречи с вами 11 Октября! ${songNote}`;
+        } else {
+          rsvpSuccessText.innerHTML = `Дорогой(ая) ${guestName}, спасибо за подтверждение! Мы с огромной радостью и нетерпением ждем встречи с вами 11 Октября! ${songNote}`;
+        }
+
+        // ─────────────────────────────────────────────────────────────
+        // 💬 ОТПРАВКА ОТВЕТА В TELEGRAM (по желанию молодоженов):
+        // 1. Создайте бесплатного бота в Telegram через @BotFather и вставьте токен:
+        const TELEGRAM_BOT_TOKEN = ''; // например: '123456789:ABCdefGhIJKlmNo...'
+        // 2. Узнайте свой chat_id через @userinfobot и вставьте сюда:
+        const TELEGRAM_CHAT_ID = '';   // например: '987654321'
+        // ─────────────────────────────────────────────────────────────
+
+        if (TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID) {
+          const selectedDrinks = Array.from(document.querySelectorAll('input[name="drinks"]:checked'))
+            .map(cb => cb.closest('.option-chip').querySelector('.option-chip-text').textContent.trim())
+            .join(', ') || 'Не указано';
+
+          const statusText = attendanceVal === 'yes' ? '✅ С радостью приду' :
+                             attendanceVal === 'pair' ? `👫 Буду с парой (Спутник: ${companionName || 'не указан'})` :
+                             '❌ К сожалению, не смогу';
+
+          const tgMessage = `💍 <b>Новый ответ на приглашение!</b>\n\n` +
+                            `👤 <b>Гость:</b> ${guestName}\n` +
+                            `💌 <b>Статус:</b> ${statusText}\n` +
+                            `🍷 <b>Напитки:</b> ${selectedDrinks}\n` +
+                            `🎶 <b>Трек:</b> ${guestSong || 'Не указан'}`;
+
+          fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: TELEGRAM_CHAT_ID,
+              text: tgMessage,
+              parse_mode: 'HTML'
+            })
+          }).catch(err => console.warn('Ошибка отправки в Telegram:', err));
+        }
+
+        // Fire festive celebration confetti!
+        const rect = rsvpForm.getBoundingClientRect();
+        fireConfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
+
+        // Hide form and show success
+        rsvpForm.style.display = 'none';
+        rsvpSuccess.classList.add('show');
+      });
+
+      /* ---------------------------------------------------------
+         10. INTERACTIVE TOUCH HIGHLIGHTS (Calendar & Swatches)
+         --------------------------------------------------------- */
+      // Tap on Day 11 in Calendar
+      const day11Cell = document.getElementById('wedding-day-cell');
+      if (day11Cell) {
+        day11Cell.addEventListener('click', () => {
+          const r = day11Cell.getBoundingClientRect();
+          fireConfetti(r.left + r.width / 2, r.top + r.height / 2);
+          showToast('11 Октября 2026 в 15:00 · Главный день!');
+        });
+      }
+
+      // Tap on Dress-code Swatches
+      const swatchDescriptions = {
+        'Розовый кварц': 'Нежный пудровый кварц — воздушный и романтичный',
+        'Шампань': 'Изысканный теплый шампань с золотистым сиянием',
+        'Пыльная роза': 'Благородная припыленная роза — глубина и элегантность',
+        'Оливковый шалфей': 'Спокойный эвкалиптовый шалфей — свежесть и гармония',
+        'Теплый мокко': 'Мягкий бархатный мокко — уют и стиль',
+      };
+      document.querySelectorAll('.palette-swatch').forEach((swatch) => {
+        swatch.addEventListener('click', () => {
+          document.querySelectorAll('.palette-swatch').forEach((s) => s.classList.remove('active-swatch'));
+          swatch.classList.add('active-swatch');
+          const title = swatch.getAttribute('title');
+          const desc = swatchDescriptions[title] || title;
+          showToast(desc);
+        });
+      });
+
+      // Safety check: ensure content is visible even if GSAP is blocked
+      if (typeof gsap === 'undefined') {
+        document.querySelectorAll('.fade-up').forEach((el) => {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
